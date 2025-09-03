@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Recipe Collection</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Header -->
+        <header class="header">
+            <h1 class="header-title">My Recipes</h1>
+            <div class="header-controls">
+                <button class="unit-toggle" id="unitToggle">
+                    <span class="unit-text">Metric</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Home View -->
+        <div class="view" id="homeView">
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search recipes or ingredients...">
+                <button class="search-clear" id="searchClear">×</button>
+            </div>
+
+            <!-- Tag Filter -->
+            <div class="tag-filter-container">
+                <div class="tag-chips" id="tagChips">
+                    <!-- Tag chips will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Recipe Count -->
+            <div class="recipe-count" id="recipeCount">
+                0 recipes
+            </div>
+
+            <!-- Recipe List -->
+            <div class="recipe-list" id="recipeList">
+                <!-- Recipes will be populated by JavaScript -->
+            </div>
+
+            <!-- Add Recipe Button -->
+            <button class="add-recipe-btn" id="addRecipeBtn">
+                <span class="add-icon">+</span>
+            </button>
+        </div>
+
+        <!-- Recipe Detail View -->
+        <div class="view hidden" id="recipeDetailView">
+            <div class="recipe-detail">
+                <!-- Recipe Header -->
+                <div class="recipe-header">
+                    <button class="back-btn" id="backBtn">← Back</button>
+                    <div class="recipe-actions">
+                        <button class="action-btn danger" id="deleteBtn">Delete</button>
+                    </div>
+                </div>
+
+                <!-- Recipe Title -->
+                <h2 class="recipe-title" id="recipeTitle"></h2>
+
+                <!-- Recipe Meta -->
+                <div class="recipe-meta">
+                    <div class="recipe-tags" id="recipeTags"></div>
+                    <div class="recipe-date" id="recipeDate"></div>
+                </div>
+
+                <!-- Recipe Controls -->
+                <div class="recipe-controls">
+                    <div class="scale-controls">
+                        <label>Scale:</label>
+                        <button class="scale-btn" data-scale="0.5">½×</button>
+                        <button class="scale-btn active" data-scale="1">1×</button>
+                        <button class="scale-btn" data-scale="1.5">1½×</button>
+                        <button class="scale-btn" data-scale="2">2×</button>
+                        <button class="scale-btn" data-scale="3">3×</button>
+                        <button class="scale-btn" data-scale="4">4×</button>
+                    </div>
+                    <button class="cooking-mode-btn" id="cookingModeBtn">Cooking Mode</button>
+                </div>
+
+                <!-- Ingredients -->
+                <div class="recipe-section">
+                    <h3>Ingredients</h3>
+                    <ul class="ingredient-list" id="ingredientList">
+                        <!-- Ingredients will be populated by JavaScript -->
+                    </ul>
+                </div>
+
+                <!-- Instructions -->
+                <div class="recipe-section">
+                    <h3>Instructions</h3>
+                    <ol class="instruction-list" id="instructionList">
+                        <!-- Instructions will be populated by JavaScript -->
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Recipe View -->
+        <div class="view hidden" id="addRecipeView">
+            <div class="add-recipe-form">
+                <div class="form-header">
+                    <button class="back-btn" id="addRecipeBackBtn">← Back</button>
+                    <h2>Add New Recipe</h2>
+                </div>
+
+                <div class="manual-entry" id="manualEntry">
+                    
+                    <div class="form-group">
+                        <label for="recipeName">Recipe Name</label>
+                        <input type="text" id="recipeName" placeholder="Enter recipe name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recipeIngredients">Ingredients</label>
+                        <textarea id="recipeIngredients" placeholder="1 cup flour&#10;2 tbsp butter&#10;1 tsp salt" rows="6"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recipeInstructions">Instructions</label>
+                        <textarea id="recipeInstructions" placeholder="1. Mix dry ingredients...&#10;2. Add wet ingredients..." rows="6"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recipeTags">Tags</label>
+                        <div class="tag-selector" id="tagSelector">
+                            <!-- Tag checkboxes will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn secondary" id="clearFormBtn">Clear</button>
+                        <button type="button" class="btn primary" id="saveRecipeBtn">Save Recipe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cooking Mode View -->
+        <div class="view hidden" id="cookingModeView">
+            <div class="cooking-mode">
+                <div class="cooking-header">
+                    <button class="back-btn" id="cookingBackBtn">← Exit Cooking Mode</button>
+                    <h2 id="cookingTitle"></h2>
+                </div>
+
+                <div class="cooking-content">
+                    <div class="cooking-section">
+                        <h3>Ingredients</h3>
+                        <ul class="cooking-ingredient-list" id="cookingIngredients">
+                            <!-- Ingredients will be populated by JavaScript -->
+                        </ul>
+                    </div>
+
+                    <div class="cooking-section">
+                        <h3>Instructions</h3>
+                        <div class="cooking-instructions" id="cookingInstructions">
+                            <!-- Instructions will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast notifications -->
+        <div class="toast hidden" id="toast">
+            <span class="toast-message"></span>
+            <button class="toast-close">×</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
