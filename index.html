@@ -5,174 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Recipe Collection</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍳</text></svg>">
 </head>
 <body>
-    <!-- Main Container -->
     <div class="container">
-        
-        <!-- Header -->
         <header class="header">
-            <h1 class="header-title">My Recipes</h1>
+            <h1 class="site-title">
+                <span class="title-icon">🍳</span>
+                My Recipe Collection
+            </h1>
             <div class="header-controls">
-                <button class="unit-toggle" id="unitToggle">
-                    <span class="unit-text">Metric</span>
+                <button class="add-recipe-btn" onclick="showAddRecipeModal()">
+                    <span>+</span> Add Recipe
                 </button>
             </div>
         </header>
 
-        <!-- Home View -->
-        <div class="view" id="homeView">
-            <!-- Search Bar -->
+        <div class="search-section">
             <div class="search-container">
-                <input type="text" class="search-input" id="searchInput" placeholder="Search recipes or ingredients...">
-                <button class="search-clear" id="searchClear">×</button>
+                <input type="text" id="search-input" placeholder="Search recipes..." class="search-input">
+                <button class="search-clear" onclick="clearSearch()" style="display: none;">×</button>
             </div>
-
-            <!-- Tag Filter -->
-            <div class="tag-filter-container">
-                <div class="tag-chips" id="tagChips">
-                    <!-- Tag chips will be populated by JavaScript -->
+            
+            <div class="filter-container">
+                <div class="filter-chips" id="filter-chips">
+                    <!-- Filter chips will be populated by JavaScript -->
                 </div>
+                <button class="filter-clear" onclick="clearFilters()" style="display: none;">Clear Filters</button>
             </div>
-
-            <!-- Recipe Count -->
-            <div class="recipe-count" id="recipeCount">
-                0 recipes
-            </div>
-
-            <!-- Recipe List -->
-            <div class="recipe-list" id="recipeList">
-                <!-- Recipes will be populated by JavaScript -->
-            </div>
-
-            <!-- Add Recipe Button -->
-            <button class="add-recipe-btn" id="addRecipeBtn">
-                <span class="add-icon">+</span>
-            </button>
         </div>
 
-        <!-- Recipe Detail View -->
-        <div class="view hidden" id="recipeDetailView">
-            <div class="recipe-detail">
-                <!-- Recipe Header -->
-                <div class="recipe-header">
-                    <button class="back-btn" id="backBtn">← Back</button>
-                    <div class="recipe-actions">
-                        <button class="action-btn danger" id="deleteBtn">Delete</button>
-                    </div>
+        <div class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" id="total-recipes">0</span>
+                    <span class="stat-label">Recipes</span>
                 </div>
-
-                <!-- Recipe Title -->
-                <h2 class="recipe-title" id="recipeTitle"></h2>
-
-                <!-- Recipe Meta -->
-                <div class="recipe-meta">
-                    <div class="recipe-tags" id="recipeTags"></div>
-                    <div class="recipe-date" id="recipeDate"></div>
-                </div>
-
-                <!-- Recipe Controls -->
-                <div class="recipe-controls">
-                    <div class="scale-controls">
-                        <label>Scale:</label>
-                        <button class="scale-btn" data-scale="0.5">½×</button>
-                        <button class="scale-btn active" data-scale="1">1×</button>
-                        <button class="scale-btn" data-scale="1.5">1½×</button>
-                        <button class="scale-btn" data-scale="2">2×</button>
-                        <button class="scale-btn" data-scale="3">3×</button>
-                        <button class="scale-btn" data-scale="4">4×</button>
-                    </div>
-                    <button class="cooking-mode-btn" id="cookingModeBtn">Cooking Mode</button>
-                </div>
-
-                <!-- Ingredients -->
-                <div class="recipe-section">
-                    <h3>Ingredients</h3>
-                    <ul class="ingredient-list" id="ingredientList">
-                        <!-- Ingredients will be populated by JavaScript -->
-                    </ul>
-                </div>
-
-                <!-- Instructions -->
-                <div class="recipe-section">
-                    <h3>Instructions</h3>
-                    <ol class="instruction-list" id="instructionList">
-                        <!-- Instructions will be populated by JavaScript -->
-                    </ol>
+                <div class="stat-item">
+                    <span class="stat-number" id="total-tags">0</span>
+                    <span class="stat-label">Categories</span>
                 </div>
             </div>
         </div>
 
-        <!-- Add Recipe View -->
-        <div class="view hidden" id="addRecipeView">
-            <div class="add-recipe-form">
-                <div class="form-header">
-                    <button class="back-btn" id="addRecipeBackBtn">← Back</button>
-                    <h2>Add New Recipe</h2>
-                </div>
+        <main class="recipe-grid" id="recipe-grid">
+            <!-- Recipe cards will be populated by JavaScript -->
+        </main>
 
-                <div class="manual-entry" id="manualEntry">
-                    
-                    <div class="form-group">
-                        <label for="recipeName">Recipe Name</label>
-                        <input type="text" id="recipeName" placeholder="Enter recipe name">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="recipeIngredients">Ingredients</label>
-                        <textarea id="recipeIngredients" placeholder="1 cup flour&#10;2 tbsp butter&#10;1 tsp salt" rows="6"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="recipeInstructions">Instructions</label>
-                        <textarea id="recipeInstructions" placeholder="1. Mix dry ingredients...&#10;2. Add wet ingredients..." rows="6"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="recipeTags">Tags</label>
-                        <div class="tag-selector" id="tagSelector">
-                            <!-- Tag checkboxes will be populated by JavaScript -->
-                        </div>
-                    </div>
-
-                    <div class="form-actions">
-                        <button type="button" class="btn secondary" id="clearFormBtn">Clear</button>
-                        <button type="button" class="btn primary" id="saveRecipeBtn">Save Recipe</button>
-                    </div>
-                </div>
-            </div>
+        <div class="empty-state" id="empty-state" style="display: none;">
+            <div class="empty-icon">🔍</div>
+            <h3>No recipes found</h3>
+            <p>Try adjusting your search or filters</p>
         </div>
 
-        <!-- Cooking Mode View -->
-        <div class="view hidden" id="cookingModeView">
-            <div class="cooking-mode">
-                <div class="cooking-header">
-                    <button class="back-btn" id="cookingBackBtn">← Exit Cooking Mode</button>
-                    <h2 id="cookingTitle"></h2>
+        <div class="loading-state" id="loading-state">
+            <div class="loading-spinner"></div>
+            <p>Loading recipes...</p>
+        </div>
+    </div>
+
+    <!-- Add Recipe Modal -->
+    <div class="modal-overlay" id="modal-overlay" onclick="hideAddRecipeModal()">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3>Add New Recipe</h3>
+                <button class="modal-close" onclick="hideAddRecipeModal()">×</button>
+            </div>
+            <div class="modal-content">
+                <div class="upload-zone" id="upload-zone">
+                    <div class="upload-icon">📷</div>
+                    <p><strong>Upload Recipe Screenshot</strong></p>
+                    <p class="upload-subtext">Take a photo or upload an image of your recipe</p>
+                    <input type="file" id="recipe-image" accept="image/*" onchange="handleImageUpload(event)">
+                    <label for="recipe-image" class="upload-button">Choose Image</label>
                 </div>
-
-                <div class="cooking-content">
-                    <div class="cooking-section">
-                        <h3>Ingredients</h3>
-                        <ul class="cooking-ingredient-list" id="cookingIngredients">
-                            <!-- Ingredients will be populated by JavaScript -->
-                        </ul>
+                <div class="upload-preview" id="upload-preview" style="display: none;">
+                    <img id="preview-image" src="" alt="Recipe preview">
+                    <div class="preview-actions">
+                        <button onclick="clearImageUpload()" class="secondary-btn">Remove</button>
+                        <button onclick="processRecipeImage()" class="primary-btn">Process Recipe</button>
                     </div>
-
-                    <div class="cooking-section">
-                        <h3>Instructions</h3>
-                        <div class="cooking-instructions" id="cookingInstructions">
-                            <!-- Instructions will be populated by JavaScript -->
-                        </div>
-                    </div>
+                </div>
+                <div class="manual-entry">
+                    <p class="section-divider"><span>Or enter manually</span></p>
+                    <form id="manual-recipe-form" onsubmit="addManualRecipe(event)">
+                        <input type="text" placeholder="Recipe name" required>
+                        <input type="text" placeholder="Tags (comma separated)" required>
+                        <button type="submit" class="primary-btn">Add Recipe Template</button>
+                    </form>
                 </div>
             </div>
-        </div>
-
-        <!-- Toast notifications -->
-        <div class="toast hidden" id="toast">
-            <span class="toast-message"></span>
-            <button class="toast-close">×</button>
         </div>
     </div>
 

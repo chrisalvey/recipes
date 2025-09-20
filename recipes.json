@@ -1,108 +1,157 @@
 {
-  "recipes": [
-    {
-      "id": "lemon-turmeric-chicken",
-      "name": "Lemon-Turmeric Chicken and Rice with Pickled Red Onion",
-      "tags": ["Asian", "Chicken", "Rice", "One-Pan", "Dinner"],
-      "ingredients": [
-        { "amount": 1, "unit": "tsp", "item": "grated lemon zest" },
-        { "amount": 6, "unit": "tbsp", "item": "lemon juice (2 lemons), divided" },
-        { "amount": 0.5, "unit": "tsp", "item": "confectioners' sugar" },
-        { "amount": 2.25, "unit": "tsp", "item": "table salt, divided" },
-        { "amount": 0.5, "unit": "whole", "item": "small red onion, sliced thin" },
-        { "amount": 0.25, "unit": "cup", "item": "plain whole-milk yogurt" },
-        { "amount": 1, "unit": "tsp", "item": "ground turmeric" },
-        { "amount": 1, "unit": "tsp", "item": "ground ginger" },
-        { "amount": 0.25, "unit": "tsp", "item": "ground cinnamon" },
-        { "amount": 0.25, "unit": "tsp", "item": "pepper" },
-        { "amount": 2, "unit": "lbs", "item": "boneless, skinless chicken thighs, trimmed" },
-        { "amount": 2, "unit": "tbsp", "item": "vegetable oil" },
-        { "amount": 6, "unit": "whole", "item": "scallions, white and green parts separated and sliced thin" },
-        { "amount": 3, "unit": "whole", "item": "garlic cloves, minced" },
-        { "amount": 2.25, "unit": "cups", "item": "chicken broth" },
-        { "amount": 1.5, "unit": "cups", "item": "long-grain white rice, rinsed" },
-        { "amount": 1, "unit": "whole", "item": "jalapeño chile, stemmed and sliced into thin rings" }
-      ],
-      "instructions": [
-        "Whisk ¼ cup lemon juice, sugar, and ½ teaspoon salt together in medium bowl; add onion and toss to combine. Whisk yogurt, lemon zest, and ⅛ teaspoon salt together in small bowl. Refrigerate onion mixture and yogurt separately until ready to serve.",
-        "Combine 1½ teaspoons salt, turmeric, ginger, cinnamon, and pepper in second small bowl. Pat chicken dry with paper towels and sprinkle all over with spice mixture. Heat oil in 12-inch skillet over medium-high heat until just smoking. Add chicken skinned side down and cook without moving until well browned, 4 to 5 minutes (do not flip chicken; only 1 side is browned). Transfer chicken browned side up to clean plate; set aside.",
-        "Off heat, stir scallion whites and garlic into fat remaining in skillet and cook in residual heat until fragrant, about 1 minute. Stir in broth, rice, remaining 2 tablespoons lemon juice, and remaining ½ teaspoon salt, scraping up any browned bits.",
-        "Nestle chicken into rice mixture, browned side up, along with any accumulated juices. Bring mixture to simmer over medium-high heat, then reduce heat to low. Cover skillet and simmer until liquid is absorbed and chicken registers at least 175 degrees, 18 to 20 minutes. Remove skillet from heat and let rest, covered, for 5 minutes.",
-        "Drain onion and discard remaining liquid. Dollop yogurt mixture over chicken and rice in skillet. Sprinkle with pickled onion, jalapeño, and scallion greens. Serve."
-      ],
-      "servings": 4,
-      "totalTime": "1 hour",
-      "dateAdded": "2024-12-01T10:00:00.000Z"
-    },
-    {
-      "id": "cuban-mojo-pork",
-      "name": "Cuban-Style Roast Pork Shoulder with Mojo",
-      "tags": ["Cuban", "Pork", "BBQ", "Slow Cooker", "Holiday"],
-      "sourceUrl": "https://www.seriouseats.com/cuban-roast-pork-shoulder-mojo-recipe",
-      "ingredients": [
-        { "amount": 8, "unit": "whole", "item": "medium garlic cloves, minced" },
-        { "amount": 2, "unit": "tsp", "item": "ground cumin" },
-        { "amount": 2, "unit": "tsp", "item": "freshly ground black pepper" },
-        { "amount": 0.25, "unit": "cup", "item": "minced fresh oregano leaves" },
-        { "amount": 0.5, "unit": "cup", "item": "fresh orange juice (from 1-2 oranges)" },
-        { "amount": 0.25, "unit": "cup", "item": "fresh lime juice (from 3-4 limes)" },
-        { "amount": 0.25, "unit": "cup", "item": "extra-virgin olive oil" },
-        { "amount": 1, "unit": "tbsp", "item": "kosher salt" },
-        { "amount": 6, "unit": "lbs", "item": "boneless pork shoulder roast, rind removed" },
-        { "amount": 0.25, "unit": "cup", "item": "finely chopped fresh mint leaves" },
-        { "amount": 3, "unit": "tbsp", "item": "finely chopped fresh oregano leaves" },
-        { "amount": 1, "unit": "whole", "item": "lime wedges, for serving" },
-        { "amount": 0.5, "unit": "cup", "item": "water" }
-      ],
-      "instructions": [
-        "In a small bowl, combine minced garlic, cumin, black pepper, oregano, and 1 tablespoon salt to form a paste. In another bowl, whisk together orange juice, lime juice, and olive oil until well combined.",
-        "Using a sharp knife, make 1-inch-deep slits all over the pork shoulder. Rub the garlic spice paste into the slits and all over the surface of the meat. Pour the citrus-oil mixture over the pork, massaging it into the meat.",
-        "Place pork in a large roasting pan or dish, cover with plastic wrap, and refrigerate overnight (or at least 4 hours) to marinate.",
-        "Remove pork from refrigerator 1 hour before cooking. Preheat oven to 350°F (175°C). Remove plastic wrap and pour ½ cup water around (not over) the pork in the roasting pan.",
-        "Roast the pork, basting every 30 minutes with pan juices, until the internal temperature reaches 155°F (68°C) and the exterior is well-browned and crispy, about 2-3 hours total.",
-        "Remove pork from oven and transfer to a cutting board. Cover loosely with foil and let rest for 20 minutes.",
-        "Pour the cooking juices from the pan into a small saucepan, scraping up any browned bits. Skim off excess fat and simmer the sauce over medium heat. Stir in fresh mint and oregano. Season with salt to taste.",
-        "Slice the pork and serve with the mojo sauce drizzled over top. Garnish with lime wedges. Traditionally served with black beans, rice, and fried plantains."
-      ],
-      "servings": 10,
-      "totalTime": "8 hours 30 minutes (including marinating)",
-      "dateAdded": "2024-12-01T11:00:00.000Z"
-    },
-    {
-      "id": "big-bubbly-focaccia",
-      "name": "Big and Bubbly Focaccia",
-      "tags": ["Bread", "Italian", "Vegetarian", "Appetizers"],
-      "sourceUrl": "https://www.kingarthurbaking.com/recipes/big-and-bubbly-focaccia-recipe",
-      "ingredients": [
-        { "amount": 4, "unit": "cups", "item": "unbleached all-purpose flour (480g)" },
-        { "amount": 1.25, "unit": "tsp", "item": "table salt" },
-        { "amount": 1, "unit": "tsp", "item": "granulated sugar" },
-        { "amount": 1, "unit": "tsp", "item": "instant yeast" },
-        { "amount": 1.75, "unit": "cups", "item": "lukewarm water" },
-        { "amount": 2, "unit": "tbsp", "item": "extra-virgin olive oil, divided" },
-        { "amount": 1, "unit": "tsp", "item": "flaky sea salt (like Cyprus or Maldon)" }
-      ],
-      "instructions": [
-        "In a large bowl, whisk together the flour, salt, sugar, and yeast. Add the water and 1 tablespoon olive oil and stir until the mixture is thoroughly combined and homogeneous; there should be no dry patches or lumps. Cover the bowl and set aside for 15 minutes.",
-        "Perform the first bowl fold: Use a wet hand to grab a section of dough from one side of the bowl, then lift it up and press it into the center. Repeat this motion around the bowl 8 to 12 times. Flip the dough over so the smooth side is up. Cover and let rest for 15 minutes.",
-        "Repeat the bowl fold process three more times, resting 15 minutes between each fold. The dough should feel smoother and stronger with each fold.",
-        "After the fourth fold, cover the bowl and let the dough rise at warm room temperature (70°F to 75°F) for 1 hour, until nearly doubled in size and very puffy.",
-        "Spray a 9-inch square pan with nonstick spray. Cut a 3-inch-wide strip of parchment about 16 inches long and lay it across the center of the pan with overhang on two sides. Spray the parchment and add 1 tablespoon olive oil, tilting to spread evenly.",
-        "Gently transfer the risen dough to the center of the pan. Using your hands, flip the dough to coat it in oil. Cover and let rise for 1 to 1½ hours, until marshmallowy and jiggly, nearly filling the pan.",
-        "Preheat oven to 475°F with racks in upper and lower thirds. Oil your fingers and dimple the dough thoroughly, pressing to the bottom of the pan, spacing dimples about 1½ inches apart.",
-        "Drizzle the remaining 1 tablespoon olive oil over the surface and sprinkle evenly with flaky salt.",
-        "Bake on the lower rack for 15-18 minutes, until brown in the highest spots and golden in the crevices. If needed, broil briefly for 1-2 minutes for desired color.",
-        "Remove from oven, lift out using parchment tabs, remove parchment. Return to oven directly on lower rack for 5-7 minutes until sides are golden and crisp. Cool on a wire rack."
-      ],
-      "servings": 6,
-      "totalTime": "4 hours",
-      "dateAdded": "2024-12-02T12:00:00.000Z"
-    }
-  ],
-  "availableTags": [
-    "Bread", "Pizza", "BBQ", "Asian", "Indian", "Breakfast", "Mexican",
-    "Desserts", "Soups", "Salads", "Pasta", "Seafood", "Vegetarian", "Grilling",
-    "Appetizers", "Beverages", "Holiday", "Quick & Easy", "Slow Cooker",
-    "Chicken", "Rice", "One-Pan", "Dinner", "Cuban", "Pork", "Italian"
-  ]
+  "walnut-cranberry-sourdough": {
+    "id": "walnut-cranberry-sourdough",
+    "name": "Walnut Cranberry Sourdough - Single Loaf",
+    "tags": ["Bread", "Sourdough", "Artisan"],
+    "totalTime": "25 hours",
+    "yield": "1 loaf",
+    "dateAdded": 1703123400000,
+    "ingredients": [
+      {
+        "groupName": "Levain",
+        "items": [
+          {"amount": 20, "unit": "g", "item": "bread flour or all-purpose flour"},
+          {"amount": 20, "unit": "g", "item": "whole rye flour"},
+          {"amount": 20, "unit": "g", "item": "sourdough starter"},
+          {"amount": 40, "unit": "g", "item": "water"}
+        ]
+      },
+      {
+        "groupName": "Dough",
+        "items": [
+          {"amount": 400, "unit": "g", "item": "bread flour"},
+          {"amount": 300, "unit": "g", "item": "water"},
+          {"amount": 100, "unit": "g", "item": "levain (from above)"},
+          {"amount": 8, "unit": "g", "item": "salt"},
+          {"amount": 75, "unit": "g", "item": "toasted walnuts, chopped"},
+          {"amount": 60, "unit": "g", "item": "dried cranberries"}
+        ]
+      }
+    ],
+    "instructions": [
+      {
+        "timeHeader": "Day 1",
+        "steps": [
+          {"time": "9:00 PM - Make Levain", "text": "Mix levain ingredients in a small bowl. Cover and let sit at room temperature overnight (8-12 hours)."}
+        ]
+      },
+      {
+        "timeHeader": "Day 2",
+        "steps": [
+          {"time": "9:00 AM - Autolyse", "text": "Mix flour and water until just combined. Cover and let rest for 30 minutes."},
+          {"time": "9:30 AM - Mix Dough", "text": "Add levain and salt to the flour mixture. Mix by hand until well combined. Perform 4 sets of coil folds 30 minutes apart."},
+          {"time": "11:30 AM - Add Mix-ins", "text": "Gently fold in toasted walnuts and cranberries during the last set of folds."},
+          {"time": "12:00 PM - Bulk Ferment", "text": "Let dough rise in a covered container for 4-5 hours at room temperature until increased by 50%."},
+          {"time": "5:00 PM - Pre-shape", "text": "Turn dough onto lightly floured surface and pre-shape into a round. Rest 20 minutes."},
+          {"time": "5:20 PM - Final Shape", "text": "Shape into a boule or batard. Place seam-side up in a banneton or bowl lined with floured cloth."},
+          {"time": "5:30 PM - Cold Proof", "text": "Cover and refrigerate overnight (12-48 hours)."}
+        ]
+      },
+      {
+        "timeHeader": "Day 3 - Baking Day",
+        "steps": [
+          {"time": "9:00 AM - Preheat", "text": "Place Dutch oven in oven and preheat to 475°F (245°C) for 45 minutes."},
+          {"time": "9:45 AM - Score", "text": "Turn dough onto parchment paper. Score with a sharp knife or razor blade."},
+          {"time": "10:00 AM - Bake", "text": "Carefully transfer dough (on parchment) to hot Dutch oven. Cover and bake 20 minutes."},
+          {"time": "10:20 AM - Uncover", "text": "Remove lid and continue baking 15-20 minutes until golden brown and internal temp reaches 205°F (96°C)."},
+          {"time": "10:40 AM - Cool", "text": "Remove from oven and cool on wire rack for at least 1 hour before slicing."}
+        ]
+      }
+    ],
+    "notes": [
+      "All measurements are halved from original recipe for a single loaf",
+      "Toast walnuts at 350°F for 8-10 minutes before chopping",
+      "Bread will keep wrapped at room temperature for 3 days or frozen for up to 3 months",
+      "For best results, use a kitchen scale to measure ingredients by weight"
+    ]
+  },
+  "classic-chocolate-chip-cookies": {
+    "id": "classic-chocolate-chip-cookies",
+    "name": "Classic Chocolate Chip Cookies",
+    "tags": ["Desserts", "Quick & Easy", "American", "Cookies"],
+    "totalTime": "30 minutes",
+    "yield": "24 cookies",
+    "dateAdded": 1703209800000,
+    "ingredients": [
+      {
+        "groupName": null,
+        "items": [
+          {"amount": 2.25, "unit": "cups", "item": "all-purpose flour"},
+          {"amount": 1, "unit": "tsp", "item": "baking soda"},
+          {"amount": 1, "unit": "tsp", "item": "salt"},
+          {"amount": 1, "unit": "cup", "item": "butter, softened"},
+          {"amount": 0.75, "unit": "cup", "item": "granulated sugar"},
+          {"amount": 0.75, "unit": "cup", "item": "brown sugar, packed"},
+          {"amount": 2, "unit": "large", "item": "eggs"},
+          {"amount": 2, "unit": "tsp", "item": "vanilla extract"},
+          {"amount": 2, "unit": "cups", "item": "chocolate chips"}
+        ]
+      }
+    ],
+    "instructions": [
+      {
+        "timeHeader": null,
+        "steps": [
+          {"time": null, "text": "Preheat oven to 375°F (190°C). Line baking sheets with parchment paper."},
+          {"time": null, "text": "In a medium bowl, whisk together flour, baking soda, and salt. Set aside."},
+          {"time": null, "text": "In a large bowl, cream together softened butter and both sugars until light and fluffy, about 3-4 minutes."},
+          {"time": null, "text": "Beat in eggs one at a time, then add vanilla extract."},
+          {"time": null, "text": "Gradually mix in the flour mixture until just combined. Don't overmix."},
+          {"time": null, "text": "Fold in chocolate chips with a wooden spoon or spatula."},
+          {"time": null, "text": "Drop rounded tablespoons of dough onto prepared baking sheets, spacing 2 inches apart."},
+          {"time": null, "text": "Bake for 9-11 minutes until edges are golden but centers still look slightly underbaked."},
+          {"time": null, "text": "Cool on baking sheet for 5 minutes, then transfer to wire rack to cool completely."}
+        ]
+      }
+    ],
+    "notes": [
+      "For chewier cookies, slightly underbake them",
+      "For crispier cookies, bake an extra 1-2 minutes",
+      "Store in airtight container for up to 1 week",
+      "Dough can be refrigerated for up to 3 days or frozen for up to 3 months"
+    ]
+  },
+  "quick-marinara-sauce": {
+    "id": "quick-marinara-sauce",
+    "name": "Quick Marinara Sauce",
+    "tags": ["Italian", "Sauce", "Quick & Easy", "Vegetarian"],
+    "totalTime": "20 minutes",
+    "yield": "3 cups",
+    "dateAdded": 1703296200000,
+    "ingredients": [
+      {
+        "groupName": null,
+        "items": [
+          {"amount": 2, "unit": "tbsp", "item": "olive oil"},
+          {"amount": 4, "unit": "cloves", "item": "garlic, minced"},
+          {"amount": 28, "unit": "oz", "item": "crushed tomatoes"},
+          {"amount": 1, "unit": "tsp", "item": "dried oregano"},
+          {"amount": 1, "unit": "tsp", "item": "dried basil"},
+          {"amount": 0.5, "unit": "tsp", "item": "salt"},
+          {"amount": 0.25, "unit": "tsp", "item": "black pepper"},
+          {"amount": 1, "unit": "tsp", "item": "sugar"},
+          {"amount": 2, "unit": "tbsp", "item": "fresh basil, chopped"}
+        ]
+      }
+    ],
+    "instructions": [
+      {
+        "timeHeader": null,
+        "steps": [
+          {"time": null, "text": "Heat olive oil in a large saucepan over medium heat."},
+          {"time": null, "text": "Add minced garlic and sauté for 1 minute until fragrant, being careful not to burn."},
+          {"time": null, "text": "Add crushed tomatoes, oregano, dried basil, salt, pepper, and sugar."},
+          {"time": null, "text": "Bring to a simmer, then reduce heat to low and cook for 10-15 minutes, stirring occasionally."},
+          {"time": null, "text": "Taste and adjust seasoning as needed."},
+          {"time": null, "text": "Remove from heat and stir in fresh basil just before serving."}
+        ]
+      }
+    ],
+    "notes": [
+      "Can be made up to 3 days ahead and refrigerated",
+      "Freezes well for up to 3 months",
+      "Add red pepper flakes for heat",
+      "Perfect for pasta, pizza, or as a dipping sauce"
+    ]
+  }
 }
