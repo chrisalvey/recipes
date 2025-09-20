@@ -1,3 +1,58 @@
+"one-pot-lasagna-soup": {
+  "id": "one-pot-lasagna-soup",
+  "name": "One Pot Lasagna Soup",
+  "tags": ["Soup", "One Pot", "Comfort Food", "High Protein"],
+  "totalTime": "30 minutes",
+  "yield": "8 servings",
+  "dateAdded": 1726790460000,
+  "nutrition": {
+    "calories": 276,
+    "protein": "22g",
+    "carbs": "15g", 
+    "fat": "15g",
+    "servingSize": "1 bowl"
+  },
+  "ingredients": [
+    {
+      "groupName": null,
+      "items": [
+        {"amount": 1, "unit": "lb", "item": "ground beef"},
+        {"amount": 3, "unit": "cloves", "item": "garlic, minced"},
+        {"amount": 0.5, "unit": "medium", "item": "yellow onion, chopped"},
+        {"amount": 0.5, "unit": "tsp", "item": "garlic powder"},
+        {"amount": 0.5, "unit": "tsp", "item": "onion powder"},
+        {"amount": 0.25, "unit": "tsp", "item": "dried basil"},
+        {"amount": 0.25, "unit": "tsp", "item": "dried oregano"},
+        {"amount": 1, "unit": "tsp", "item": "kosher salt"},
+        {"amount": null, "unit": null, "item": "fresh ground pepper, to taste"},
+        {"amount": 14, "unit": "oz", "item": "can crushed tomatoes"},
+        {"amount": 32, "unit": "oz", "item": "chicken broth"},
+        {"amount": 1, "unit": "cup", "item": "water"},
+        {"amount": 2, "unit": "tsp", "item": "tomato paste"},
+        {"amount": 6, "unit": "oz", "item": "lasagna noodles, broken into pieces"},
+        {"amount": 1, "unit": "cup", "item": "frozen spinach"},
+        {"amount": 0.25, "unit": "cup", "item": "cream (or use Greek yogurt for a lighter option)"},
+        {"amount": 4, "unit": "oz", "item": "mozzarella cheese, sliced"},
+        {"amount": null, "unit": null, "item": "ricotta cheese for topping"},
+        {"amount": null, "unit": null, "item": "parmesan cheese, fresh basil (optional)"}
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "timeHeader": null,
+      "steps": [
+        {"time": null, "text": "Brown the Ground Beef: In a large soup pot over medium heat, brown the ground beef. Drain excess grease."},
+        {"time": "5 minutes", "text": "Sauté Aromatics: Add garlic, onion, garlic powder, onion powder, basil, oregano, salt, and pepper. Cook for 5 minutes until onions are soft."},
+        {"time": null, "text": "Make the Soup Base: Stir in the crushed tomatoes, chicken broth, water, tomato paste, and broken lasagna noodles."},
+        {"time": "10 minutes", "text": "Simmer: Bring to a boil, reduce heat to low, cover, and simmer for 10 minutes."},
+        {"time": "5 minutes", "text": "Add Spinach and Cream: Stir in frozen spinach and cream. Simmer uncovered for 5 more minutes."},
+        {"time": null, "text": "Assemble Bowls: Place a slice of mozzarella cheese in the bottom of each bowl, ladle in the soup, then top with a spoonful of ricotta cheese and a sprinkle of parmesan. Garnish with fresh basil if desired."}
+      ]
+    }
+  ],
+  "notes": ["Recipe makes 8 servings", "Can substitute Greek yogurt for cream for lighter option", "Garnish with fresh basil and parmesan cheese"]
+},
 {
   "walnut-cranberry-sourdough": {
     "id": "walnut-cranberry-sourdough",
