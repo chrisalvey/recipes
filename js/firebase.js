@@ -32,6 +32,8 @@ auth.onAuthStateChanged((user) => {
         }
     } else {
         console.log('User signed out');
+        // DEV MODE: Auto sign-in anonymously (remove this when enabling manual sign-in)
+        signInAnonymously();
     }
 });
 
