@@ -64,6 +64,7 @@ function setupNavigation() {
         showView('edit-view');
         setActiveNav('nav-add');
     });
+document.getElementById('nav-smart-add').addEventListener('click', () => {        showView('smart-add-view');        setActiveNav('nav-smart-add');    });
 
     document.getElementById('nav-import').addEventListener('click', () => {
         showView('import-view');
