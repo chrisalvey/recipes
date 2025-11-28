@@ -1,0 +1,22 @@
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Local development
+.env
+.env.local
+
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log

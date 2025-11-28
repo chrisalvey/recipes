@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Collection</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Recipe Collection</h1>
+            <nav>
+                <button id="nav-browse" class="nav-btn active">Browse</button>
+                <button id="nav-add" class="nav-btn">Add Recipe</button>
+                <button id="nav-import" class="nav-btn">Import</button>
+                <button id="nav-export" class="nav-btn">Export</button>
+            </nav>
+            <div id="auth-section">
+                <button id="sign-in-btn" class="btn-secondary">Sign In</button>
+                <button id="sign-out-btn" class="btn-secondary" style="display: none;">Sign Out</button>
+                <span id="user-email" class="user-info"></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Browse View -->
+        <div id="browse-view" class="view active">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search recipes...">
+                <select id="sort-select">
+                    <option value="name">Sort by Name</option>
+                    <option value="date">Sort by Date Added</option>
+                </select>
+            </div>
+            <div id="recipes-list" class="recipes-grid">
+                <!-- Recipe cards will be inserted here -->
+            </div>
+            <div id="no-recipes" class="empty-state" style="display: none;">
+                <p>No recipes found. Add your first recipe or import existing ones!</p>
+            </div>
+        </div>
+
+        <!-- Recipe Detail View -->
+        <div id="detail-view" class="view">
+            <button id="back-to-list" class="btn-secondary">← Back to List</button>
+            <div id="recipe-detail">
+                <!-- Recipe details will be inserted here -->
+            </div>
+        </div>
+
+        <!-- Add/Edit Recipe View -->
+        <div id="edit-view" class="view">
+            <h2 id="edit-title">Add New Recipe</h2>
+            <form id="recipe-form">
+                <div class="form-group">
+                    <label for="recipe-name">Recipe Name *</label>
+                    <input type="text" id="recipe-name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="recipe-description">Description</label>
+                    <textarea id="recipe-description" rows="3"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="recipe-preptime">Prep Time (minutes)</label>
+                        <input type="number" id="recipe-preptime" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipe-cooktime">Cook Time (minutes)</label>
+                        <input type="number" id="recipe-cooktime" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipe-yield">Yield/Servings</label>
+                        <input type="text" id="recipe-yield" placeholder="e.g., 4 servings">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="recipe-ingredients">Ingredients *</label>
+                    <textarea id="recipe-ingredients" rows="8"
+                              placeholder="Enter one ingredient per line" required></textarea>
+                    <small>One ingredient per line</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="recipe-instructions">Instructions *</label>
+                    <textarea id="recipe-instructions" rows="10"
+                              placeholder="Enter cooking instructions" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="recipe-source">Source</label>
+                    <input type="text" id="recipe-source" placeholder="e.g., Grandma's cookbook">
+                </div>
+
+                <div class="form-group">
+                    <label for="recipe-sourceurl">Source URL</label>
+                    <input type="url" id="recipe-sourceurl" placeholder="https://...">
+                </div>
+
+                <div class="form-group">
+                    <label for="recipe-image">Image URL</label>
+                    <input type="url" id="recipe-image" placeholder="https://...">
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save Recipe</button>
+                    <button type="button" id="cancel-edit" class="btn-secondary">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Import View -->
+        <div id="import-view" class="view">
+            <h2>Import Recipes</h2>
+            <p>Import recipes in JSON-LD format (schema.org/Recipe)</p>
+
+            <div class="import-options">
+                <div class="form-group">
+                    <label for="json-file">Upload JSON File</label>
+                    <input type="file" id="json-file" accept=".json">
+                </div>
+
+                <div class="form-group">
+                    <label for="json-paste">Or Paste JSON</label>
+                    <textarea id="json-paste" rows="10"
+                              placeholder='{"name": "Recipe Name", ...}'></textarea>
+                </div>
+
+                <button id="import-btn" class="btn-primary">Import</button>
+                <div id="import-status" class="status-message"></div>
+            </div>
+        </div>
+
+        <!-- Export View -->
+        <div id="export-view" class="view">
+            <h2>Export Recipes</h2>
+            <p>Download your recipes in JSON format</p>
+
+            <div class="export-options">
+                <button id="export-all-btn" class="btn-primary">Export All Recipes</button>
+                <div id="export-status" class="status-message"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Recipe Collection</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <!-- Fuse.js for search -->
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+
+    <!-- App scripts -->
+    <script src="js/firebase.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/import.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
