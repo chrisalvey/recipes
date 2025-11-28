@@ -1,13 +1,12 @@
 // Firebase Configuration
-// Replace these values with your Firebase project configuration
-// Get these from: Firebase Console > Project Settings > Your apps > Firebase SDK snippet
+// Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyCZtzD-Ggjt5wfV6dstM0AVSh63qGe1oas",
+  authDomain: "recipes-63053.firebaseapp.com",
+  projectId: "recipes-63053",
+  storageBucket: "recipes-63053.firebasestorage.app",
+  messagingSenderId: "704130371134",
+  appId: "1:704130371134:web:1f3d857d77206cd75b8b6f"
 };
 
 // Initialize Firebase
