@@ -1,0 +1,25 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Classic Chocolate Chip Cookies",
+  "description": "Soft and chewy homemade chocolate chip cookies with the perfect balance of sweetness.",
+  "prepTime": "PT15M",
+  "cookTime": "PT12M",
+  "totalTime": "PT27M",
+  "recipeYield": "24 cookies",
+  "recipeIngredient": [
+    "2 1/4 cups all-purpose flour",
+    "1 tsp baking soda",
+    "1 tsp salt",
+    "1 cup (2 sticks) butter, softened",
+    "3/4 cup granulated sugar",
+    "3/4 cup packed brown sugar",
+    "2 large eggs",
+    "2 tsp vanilla extract",
+    "2 cups semi-sweet chocolate chips"
+  ],
+  "recipeInstructions": "1. Preheat oven to 375°F (190°C).\n\n2. In a small bowl, combine flour, baking soda, and salt. Set aside.\n\n3. In a large bowl, beat softened butter, granulated sugar, and brown sugar until creamy.\n\n4. Add eggs and vanilla extract to butter mixture. Beat well.\n\n5. Gradually blend in the flour mixture.\n\n6. Stir in chocolate chips.\n\n7. Drop rounded tablespoons of dough onto ungreased baking sheets.\n\n8. Bake for 9-11 minutes or until golden brown.\n\n9. Cool on baking sheets for 2 minutes, then remove to wire racks to cool completely.",
+  "image": "https://example.com/chocolate-chip-cookies.jpg",
+  "source": "Grandma's Recipe Box",
+  "sourceUrl": "https://example.com/original-recipe"
+}

@@ -1,0 +1,64 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Simple Pasta Carbonara",
+    "description": "Classic Italian pasta dish with eggs, cheese, and pancetta.",
+    "prepTime": "PT10M",
+    "cookTime": "PT15M",
+    "totalTime": "PT25M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "1 lb spaghetti",
+      "6 oz pancetta or bacon, diced",
+      "4 large eggs",
+      "1 cup grated Parmesan cheese",
+      "2 cloves garlic, minced",
+      "Salt and black pepper to taste",
+      "Fresh parsley for garnish"
+    ],
+    "recipeInstructions": "Cook pasta according to package directions. While pasta cooks, fry pancetta until crispy. In a bowl, whisk eggs and Parmesan. Drain pasta (reserve 1 cup pasta water). Toss hot pasta with pancetta, then remove from heat. Quickly stir in egg mixture, adding pasta water to create a creamy sauce. Season with salt and pepper. Serve immediately with extra Parmesan.",
+    "source": "Italian Cooking Basics"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Overnight Oats",
+    "description": "Healthy make-ahead breakfast with oats, milk, and your favorite toppings.",
+    "prepTime": "PT5M",
+    "cookTime": "PT0M",
+    "totalTime": "PT8H5M",
+    "recipeYield": "1 serving",
+    "recipeIngredient": [
+      "1/2 cup rolled oats",
+      "1/2 cup milk (any kind)",
+      "1/4 cup Greek yogurt",
+      "1 tbsp chia seeds",
+      "1 tbsp honey or maple syrup",
+      "1/2 tsp vanilla extract",
+      "Toppings: fresh berries, nuts, banana slices"
+    ],
+    "recipeInstructions": "In a jar or container, combine oats, milk, yogurt, chia seeds, honey, and vanilla. Stir well. Cover and refrigerate overnight (at least 8 hours). In the morning, stir and add your favorite toppings. Enjoy cold or heat in microwave for 1-2 minutes.",
+    "source": "Healthy Breakfast Ideas"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Roasted Vegetables",
+    "prepTime": "PT15M",
+    "cookTime": "PT30M",
+    "recipeYield": "6 servings",
+    "recipeIngredient": [
+      "2 cups broccoli florets",
+      "2 cups cauliflower florets",
+      "1 red bell pepper, chopped",
+      "1 yellow bell pepper, chopped",
+      "1 red onion, cut into wedges",
+      "3 tbsp olive oil",
+      "1 tsp garlic powder",
+      "1 tsp dried oregano",
+      "Salt and pepper to taste"
+    ],
+    "recipeInstructions": "Preheat oven to 425°F. Toss all vegetables with olive oil, garlic powder, oregano, salt, and pepper. Spread in a single layer on a baking sheet. Roast for 25-30 minutes, stirring halfway through, until vegetables are tender and lightly browned."
+  }
+]
