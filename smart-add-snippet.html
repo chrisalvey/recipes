@@ -1,0 +1,59 @@
+<!-- SMART ADD INTEGRATION SNIPPET -->
+<!-- This file contains the HTML additions for the Smart Add feature -->
+
+<!-- 1. ADD THIS BUTTON TO THE NAV (around line 16, after the "Add Recipe" button): -->
+<button id="nav-smart-add" class="nav-btn">Smart Add</button>
+
+<!-- 2. ADD THIS ENTIRE VIEW SECTION (after the edit-view section, before the import-view section, around line 116): -->
+
+        <!-- Smart Add View -->
+        <div id="smart-add-view" class="view">
+            <h2>Smart Add Recipe</h2>
+            <p>Paste recipe text to quickly add it to your collection</p>
+
+            <div class="smart-add-container">
+                <div class="form-group">
+                    <label for="smart-text">Paste Recipe Text</label>
+                    <textarea id="smart-text" rows="15" placeholder="Paste your recipe here...
+
+Example:
+Classic Pancakes
+Prep: 10 minutes | Cook: 15 minutes | Serves: 4
+
+Ingredients:
+- 1 1/2 cups flour
+- 3 1/2 tsp baking powder
+- 1 tbsp sugar
+- 1 1/4 cups milk
+- 1 egg
+- 3 tbsp melted butter
+
+Instructions:
+Mix dry ingredients. Make a well, add wet ingredients. Stir until smooth. Pour 1/4 cup batter onto hot griddle. Flip when bubbles form. Cook until golden."></textarea>
+                </div>
+
+                <div class="file-upload-zone" id="smart-drop-zone">
+                    <input type="file" id="smart-image-upload" accept="image/*" multiple style="display: none;">
+                    <p>📷 Or click/drag images here</p>
+                    <div id="smart-file-list" class="file-list"></div>
+                    <div id="smart-image-previews" class="image-previews"></div>
+                </div>
+
+                <div class="form-actions">
+                    <button id="smart-parse-btn" class="btn-primary">Parse Recipe</button>
+                    <button id="smart-save-btn" class="btn-secondary" style="display: none;">Save to Collection</button>
+                    <button id="smart-clear-btn" class="btn-secondary">Clear</button>
+                </div>
+
+                <div id="smart-status" class="status-message"></div>
+
+                <!-- Preview of parsed recipe -->
+                <div id="smart-preview" style="display: none;">
+                    <h3>Preview</h3>
+                    <div id="smart-preview-content" class="recipe-preview"></div>
+                </div>
+            </div>
+        </div>
+
+<!-- 3. ADD THIS SCRIPT TAG (around line 171, before app.js): -->
+<script src="js/smart-add.js"></script>

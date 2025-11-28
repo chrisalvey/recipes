@@ -1,0 +1,116 @@
+/* Smart Add View Styles */
+/* Add these styles to your main css/styles.css file */
+
+.smart-add-container {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.file-upload-zone {
+    margin-top: 1.5rem;
+    padding: 2rem;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.file-upload-zone:hover {
+    border-color: var(--primary-color);
+    background-color: #f9f9f9;
+}
+
+.file-upload-zone.has-files {
+    border-color: var(--success-color);
+    background-color: #f0fff4;
+}
+
+.file-upload-zone p {
+    margin: 0;
+    color: #666;
+    font-size: 1rem;
+}
+
+.file-list {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--success-color);
+    font-weight: 500;
+}
+
+.image-previews {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    justify-content: center;
+}
+
+.image-preview {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.recipe-preview {
+    background: var(--secondary-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+}
+
+.recipe-preview h4 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.recipe-preview h5 {
+    color: var(--primary-color);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.recipe-preview .recipe-meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.recipe-preview .recipe-meta span {
+    background: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+.recipe-preview ul {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+}
+
+.recipe-preview li {
+    margin: 0.5rem 0;
+    line-height: 1.6;
+}
+
+.recipe-preview p {
+    line-height: 1.8;
+    margin: 0.5rem 0;
+}
+
+.status-message.loading {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    color: #856404;
+}
