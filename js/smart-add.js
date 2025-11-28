@@ -138,12 +138,23 @@ async function parseRecipeFromImage(additionalText) {
     document.getElementById('smart-parse-btn').disabled = true;
 
     try {
-        const CLAUDE_API_KEY = 'YOUR_CLAUDE_API_KEY_HERE'; // TODO: Add your API key
+        // Get API key from localStorage
+        let CLAUDE_API_KEY = localStorage.getItem('claudeApiKey');
 
-        if (CLAUDE_API_KEY === 'YOUR_CLAUDE_API_KEY_HERE') {
-            showSmartStatus('error', 'Claude API key not configured. Please add your API key in js/smart-add.js');
-            document.getElementById('smart-parse-btn').disabled = false;
-            return;
+        // If no key, prompt user to enter it
+        if (!CLAUDE_API_KEY) {
+            CLAUDE_API_KEY = prompt('Enter your Claude API key:\n\n(Get one from https://console.anthropic.com/settings/keys)\n\nYour key will be saved securely in your browser.');
+
+            if (!CLAUDE_API_KEY) {
+                showSmartStatus('error', 'API key required for image parsing');
+                document.getElementById('smart-parse-btn').disabled = false;
+                return;
+            }
+
+            // Save to localStorage
+            localStorage.setItem('claudeApiKey', CLAUDE_API_KEY);
+            showSmartStatus('success', 'API key saved! Processing image...');
+            await new Promise(resolve => setTimeout(resolve, 1000));
         }
 
         const content = [];
