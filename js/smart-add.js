@@ -99,8 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Parse recipe from text
-function parseSmartRecipe() {
+// Parse recipe from text or images
+async function parseSmartRecipe() {
     const text = document.getElementById('smart-text').value.trim();
 
     if (!text && smartUploadedImages.length === 0) {
@@ -108,11 +108,13 @@ function parseSmartRecipe() {
         return;
     }
 
+    // If there are images, use Claude API to extract recipe from image
     if (smartUploadedImages.length > 0) {
-        showSmartStatus('error', 'Image parsing requires manual entry. Please type or paste the recipe text from the image.');
+        await parseRecipeFromImage(text);
         return;
     }
 
+    // Otherwise, parse text directly
     showSmartStatus('loading', 'Parsing recipe...');
 
     try {
@@ -127,6 +129,98 @@ function parseSmartRecipe() {
     } catch (error) {
         console.error('Parse error:', error);
         showSmartStatus('error', 'Could not parse recipe. Please check the format and try again.');
+    }
+}
+
+// Parse recipe from image using Claude API
+async function parseRecipeFromImage(additionalText) {
+    showSmartStatus('loading', 'Extracting recipe from image with AI...');
+    document.getElementById('smart-parse-btn').disabled = true;
+
+    try {
+        const CLAUDE_API_KEY = 'YOUR_CLAUDE_API_KEY_HERE'; // TODO: Add your API key
+
+        if (CLAUDE_API_KEY === 'YOUR_CLAUDE_API_KEY_HERE') {
+            showSmartStatus('error', 'Claude API key not configured. Please add your API key in js/smart-add.js');
+            document.getElementById('smart-parse-btn').disabled = false;
+            return;
+        }
+
+        const content = [];
+
+        // Add images
+        for (const img of smartUploadedImages) {
+            const base64Data = img.data.split(',')[1]; // Remove data:image/...;base64, prefix
+            content.push({
+                type: 'image',
+                source: {
+                    type: 'base64',
+                    media_type: 'image/jpeg',
+                    data: base64Data
+                }
+            });
+        }
+
+        // Add text prompt
+        let prompt = 'Extract the recipe from the image(s) and return it as a JSON object with these exact fields:\n\n';
+        prompt += '{\n';
+        prompt += '  "name": "recipe name",\n';
+        prompt += '  "description": "brief description (optional)",\n';
+        prompt += '  "recipeIngredient": ["ingredient 1", "ingredient 2", ...],\n';
+        prompt += '  "recipeInstructions": "step by step instructions as a single string",\n';
+        prompt += '  "prepTime": "PT15M" (ISO 8601 format, optional),\n';
+        prompt += '  "cookTime": "PT30M" (ISO 8601 format, optional),\n';
+        prompt += '  "recipeYield": "4 servings" (optional),\n';
+        prompt += '  "source": "source name" (optional)\n';
+        prompt += '}\n\n';
+        prompt += 'Return ONLY the JSON object, no markdown formatting or explanation.';
+
+        if (additionalText) {
+            prompt += '\n\nAdditional context: ' + additionalText;
+        }
+
+        content.push({ type: 'text', text: prompt });
+
+        const response = await fetch('https://api.anthropic.com/v1/messages', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': CLAUDE_API_KEY,
+                'anthropic-version': '2023-06-01'
+            },
+            body: JSON.stringify({
+                model: 'claude-3-5-sonnet-20241022',
+                max_tokens: 4096,
+                messages: [
+                    { role: 'user', content: content }
+                ]
+            })
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.error?.message || `API request failed: ${response.status}`);
+        }
+
+        const data = await response.json();
+        let responseText = data.content[0].text;
+
+        // Clean up response
+        responseText = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+
+        const parsed = JSON.parse(responseText);
+        smartParsedRecipe = parsed;
+
+        // Show preview
+        displaySmartPreview(parsed);
+
+        document.getElementById('smart-save-btn').style.display = 'inline-block';
+        showSmartStatus('success', 'Recipe extracted from image! Review below and click "Save to Collection"');
+    } catch (error) {
+        console.error('Image parse error:', error);
+        showSmartStatus('error', 'Failed to extract recipe from image: ' + error.message);
+    } finally {
+        document.getElementById('smart-parse-btn').disabled = false;
     }
 }
 
