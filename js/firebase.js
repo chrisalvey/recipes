@@ -31,13 +31,15 @@ auth.onAuthStateChanged((user) => {
     updateAuthUI(user);
 
     if (user) {
-        console.log('User signed in:', user.email);
+        console.log('User signed in:', user.email || 'Anonymous');
         // Trigger app initialization or reload data
         if (window.onAuthStateChanged) {
             window.onAuthStateChanged(user);
         }
     } else {
-        console.log('No user signed in');
+        console.log('No user signed in, signing in anonymously...');
+        // Auto sign-in anonymously
+        signInAnonymously();
     }
 });
 
