@@ -73,6 +73,7 @@ function createRecipeCard(recipe) {
             <div class="recipe-meta">
                 ${timeInfo.length > 0 ? `<span>${timeInfo.join(' | ')}</span>` : ''}
                 ${recipe.recipeYield ? `<span>${escapeHtml(recipe.recipeYield)}</span>` : ''}
+            ${renderTagsHTML(recipe.recipeTags)}
             </div>
         </div>
     `;
@@ -131,6 +132,7 @@ function createRecipeDetailHTML(recipe) {
             ${totalTime ? `<div class="info-item"><span class="info-label">Total Time</span><span class="info-value">${totalTime} min</span></div>` : ''}
             ${recipe.recipeYield ? `<div class="info-item"><span class="info-label">Yield</span><span class="info-value">${escapeHtml(recipe.recipeYield)}</span></div>` : ''}
         </div>
+n        ${renderTagsHTML(recipe.recipeTags)}
 
         ${recipe.image ? `<img src="${escapeHtml(recipe.image)}" alt="${escapeHtml(recipe.name)}" style="max-width: 100%; border-radius: 8px; margin: 1rem 0;">` : ''}
 
@@ -172,6 +174,9 @@ async function editRecipe(recipeId) {
         document.getElementById('recipe-source').value = recipe.source || '';
         document.getElementById('recipe-sourceurl').value = recipe.sourceUrl || '';
         document.getElementById('recipe-image').value = recipe.image || '';
+        
+        // Load tags
+        loadTags(recipe.recipeTags);
 
         // Update form title
         document.getElementById('edit-title').textContent = 'Edit Recipe';
@@ -189,6 +194,7 @@ function clearRecipeForm() {
     document.getElementById('recipe-form').reset();
     document.getElementById('edit-title').textContent = 'Add New Recipe';
     currentRecipeId = null;
+    clearTags();
 }
 
 // Confirm delete recipe
@@ -256,4 +262,10 @@ function showLoading(message = 'Loading') {
     if (recipesList) {
         recipesList.innerHTML = `<div class="loading">${message}</div>`;
     }
+}
+
+// Render tags HTML
+function renderTagsHTML(tags) {
+    if (!tags || tags.length === 0) return '';
+    return '<div class="recipe-tags">' + tags.map(tag => '<span class="tag">' + escapeHtml(tag) + '</span>').join('') + '</div>';
 }

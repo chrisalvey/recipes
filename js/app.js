@@ -22,6 +22,9 @@ function initializeApp() {
 
     // Set up recipe form
     setupRecipeForm();
+    
+    // Set up tag input
+    setupTagInput();
 
     // Set up import functionality
     setupImport();
@@ -181,6 +184,7 @@ async function saveRecipe() {
         if (image) recipeData.image = image;
         if (source) recipeData.source = source;
         if (sourceUrl) recipeData.sourceUrl = sourceUrl;
+        if (currentRecipeTags.length > 0) recipeData.recipeTags = currentRecipeTags;
 
         // Calculate total time if both prep and cook are provided
         if (prepTime && cookTime) {
@@ -320,3 +324,150 @@ function setupBackButton() {
         });
     }
 }
+
+// ============ Tag Management ============
+
+let currentRecipeTags = [];
+let currentRecipeId = null;
+
+// Initialize tag input handling
+function setupTagInput() {
+    const tagInput = document.getElementById('recipe-tags-input');
+    const addTagBtn = document.getElementById('add-tag-btn');
+    
+    if (!tagInput || !addTagBtn) return;
+    
+    // Add tag on button click
+    addTagBtn.addEventListener('click', () => {
+        addTag(tagInput.value.trim());
+        tagInput.value = '';
+    });
+    
+    // Add tag on Enter key
+    tagInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            addTag(tagInput.value.trim());
+            tagInput.value = '';
+        }
+    });
+    
+    // Allow comma-separated tags
+    tagInput.addEventListener('input', (e) => {
+        const value = e.target.value;
+        if (value.includes(',')) {
+            const tags = value.split(',').map(t => t.trim()).filter(t => t);
+            tags.forEach(tag => addTag(tag));
+            tagInput.value = '';
+        }
+    });
+}
+
+// Add a tag
+function addTag(tagName) {
+    if (!tagName) return;
+    
+    // Normalize: lowercase and remove special characters except spaces and hyphens
+    tagName = tagName.toLowerCase().replace(/[^\w\s-]/g, '');
+    
+    // Check if tag already exists
+    if (currentRecipeTags.includes(tagName)) {
+        return;
+    }
+    
+    // Add to array
+    currentRecipeTags.push(tagName);
+    
+    // Update display
+    renderTags();
+}
+
+// Remove a tag
+function removeTag(tagName) {
+    currentRecipeTags = currentRecipeTags.filter(t => t !== tagName);
+    renderTags();
+}
+
+// Render tags in the form
+function renderTags() {
+    const tagsList = document.getElementById('recipe-tags-list');
+    if (!tagsList) return;
+    
+    tagsList.innerHTML = '';
+    
+    currentRecipeTags.forEach(tag => {
+        const tagEl = document.createElement('span');
+        tagEl.className = 'tag';
+        tagEl.innerHTML = `
+            ${tag}
+            <button type="button" class="tag-remove" data-tag="${tag}">&times;</button>
+        `;
+        
+        // Add remove handler
+        const removeBtn = tagEl.querySelector('.tag-remove');
+        removeBtn.addEventListener('click', () => removeTag(tag));
+        
+        tagsList.appendChild(tagEl);
+    });
+}
+
+// Load tags into form when editing
+function loadTags(tags) {
+    currentRecipeTags = tags || [];
+    renderTags();
+}
+
+// Clear tags
+function clearTags() {
+    currentRecipeTags = [];
+    renderTags();
+}
+
+// ============ Tag Filtering UI ============
+
+// Render available tags as filter buttons
+function renderTagFilters() {
+    const container = document.getElementById('tag-filter-container');
+    const tagsDiv = document.getElementById('available-tags');
+    
+    if (!container || !tagsDiv) return;
+    
+    const allTags = getAllTags(currentRecipes);
+    
+    if (allTags.length === 0) {
+        container.style.display = 'none';
+        return;
+    }
+    
+    container.style.display = 'block';
+    tagsDiv.innerHTML = '';
+    
+    allTags.forEach(tag => {
+        const tagBtn = document.createElement('button');
+        tagBtn.className = 'tag-filter';
+        tagBtn.textContent = tag;
+        tagBtn.dataset.tag = tag;
+        
+        // Check if this tag is selected
+        if (getSelectedTags().includes(tag)) {
+            tagBtn.classList.add('active');
+        }
+        
+        tagBtn.addEventListener('click', () => {
+            toggleTagFilter(tag);
+            renderTagFilters();
+            applyFilters();
+        });
+        
+        tagsDiv.appendChild(tagBtn);
+    });
+}
+
+// Update applyFilters to include tag filtering
+const originalApplyFilters = applyFilters;
+applyFilters = function() {
+    let filtered = filterRecipes(currentSearchQuery, currentSortBy);
+    filtered = filterByTags(filtered, getSelectedTags());
+    renderRecipesList(filtered);
+    renderTagFilters();
+};

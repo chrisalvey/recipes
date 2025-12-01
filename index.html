@@ -35,6 +35,10 @@
                     <option value="date">Sort by Date Added</option>
                 </select>
             </div>
+            <div id="tag-filter-container" class="tag-filter-container" style="display: none;">
+                <div class="tag-filter-title">Filter by tags:</div>
+                <div id="available-tags" class="available-tags"></div>
+            </div>
             <div id="recipes-list" class="recipes-grid">
                 <!-- Recipe cards will be inserted here -->
             </div>
@@ -106,6 +110,16 @@
                 <div class="form-group">
                     <label for="recipe-image">Image URL</label>
                     <input type="url" id="recipe-image" placeholder="https://...">
+                </div>
+
+                <div class="form-group">
+                    <label for="recipe-tags">Tags</label>
+                    <div class="tag-input-container">
+                        <input type="text" id="recipe-tags-input" placeholder="e.g., bread, italian, vegetarian">
+                        <button type="button" id="add-tag-btn" class="btn-secondary">Add Tag</button>
+                    </div>
+                    <div id="recipe-tags-list" class="tags-list"></div>
+                    <small>Add tags to categorize your recipe (bread, pizza, meat, chinese, etc.)</small>
                 </div>
 
                 <div class="form-actions">

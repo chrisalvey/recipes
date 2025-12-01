@@ -32,6 +32,10 @@ function initializeSearch(recipes) {
                 name: 'source',
                 weight: 0.8
             }
+            },
+            {
+                name: 'recipeTags',
+                weight: 1.8 // Tags are highly relevant for filtering
         ],
         ignoreLocation: true, // Search entire string, not just beginning
         minMatchCharLength: 2
@@ -123,4 +127,55 @@ function highlightSearchTerms(text, query) {
     });
 
     return highlighted;
+}
+
+// ============ Tag Filtering ============
+
+let selectedTags = [];
+
+// Get all unique tags from recipes
+function getAllTags(recipes) {
+    const tagSet = new Set();
+    recipes.forEach(recipe => {
+        if (recipe.recipeTags && Array.isArray(recipe.recipeTags)) {
+            recipe.recipeTags.forEach(tag => tagSet.add(tag));
+        }
+    });
+    return Array.from(tagSet).sort();
+}
+
+// Filter recipes by tags
+function filterByTags(recipes, tags) {
+    if (!tags || tags.length === 0) {
+        return recipes;
+    }
+    
+    return recipes.filter(recipe => {
+        if (!recipe.recipeTags || recipe.recipeTags.length === 0) {
+            return false;
+        }
+        // Recipe must have ALL selected tags
+        return tags.every(tag => recipe.recipeTags.includes(tag));
+    });
+}
+
+// Toggle tag selection
+function toggleTagFilter(tag) {
+    const index = selectedTags.indexOf(tag);
+    if (index > -1) {
+        selectedTags.splice(index, 1);
+    } else {
+        selectedTags.push(tag);
+    }
+    return selectedTags;
+}
+
+// Clear tag filters
+function clearTagFilters() {
+    selectedTags = [];
+}
+
+// Get selected tags
+function getSelectedTags() {
+    return selectedTags;
 }
