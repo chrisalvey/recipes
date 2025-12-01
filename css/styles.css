@@ -22,12 +22,16 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: #fafafa;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Header */
@@ -205,8 +209,9 @@ button {
 /* Recipe Grid */
 .recipes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 0.85rem;
+    width: 100%;
 }
 
 .recipe-card {
@@ -703,6 +708,8 @@ footer {
 
     .recipes-grid {
         grid-template-columns: 1fr;
+        width: 100%;
+        max-width: 100%;
     }
 
     .recipe-card {
@@ -772,6 +779,12 @@ footer {
 
     .recipes-grid {
         gap: 0.75rem;
+        grid-template-columns: 1fr;
+    }
+
+    .recipe-card {
+        width: 100%;
+        max-width: 100%;
     }
 
     .recipe-card h3 {
