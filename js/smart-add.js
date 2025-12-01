@@ -260,6 +260,19 @@ function parseRecipeText(text) {
         recipe.name = lines[0].replace(/^#+\s*/, ''); // Remove markdown headers if present
     }
 
+    // Helper function to check if a line looks like an ingredient
+    function looksLikeIngredient(line) {
+        // Ingredients often start with numbers, fractions, or bullet points
+        return line.match(/^[-•*\d⅛⅙⅕¼⅓⅜⅖½⅗⅝⅔¾⅘⅚⅞]\s*/);
+    }
+
+    // Helper function to check if a line looks like an instruction step
+    function looksLikeInstruction(line) {
+        // Instructions often start with action verbs or numbers
+        const actionVerbs = /^(add|mix|stir|bake|cook|heat|boil|fry|saute|chop|dice|slice|preheat|pour|combine|whisk|blend|season|serve|place|remove|set|bring|reduce|increase|cover|uncover|let|allow|transfer|drain|rinse|wash|peel|cut|melt|simmer|roast|grill|broil|spread|sprinkle|garnish|fold|knead|roll|shape|form|refrigerate|chill|freeze|\d+\.?)/i;
+        return actionVerbs.test(line);
+    }
+
     for (let i = 1; i < lines.length; i++) {
         const line = lines[i];
         const lowerLine = line.toLowerCase();
@@ -298,6 +311,16 @@ function parseRecipeText(text) {
             continue;
         }
 
+        // Smart section detection if no explicit headers found
+        if (currentSection === 'header' && i > 2) {
+            // After the header section, try to intelligently detect ingredients vs instructions
+            if (looksLikeIngredient(line) && recipe.recipeIngredient.length === 0) {
+                currentSection = 'ingredients';
+            } else if (looksLikeInstruction(line) && recipe.recipeIngredient.length > 0 && instructionsLines.length === 0) {
+                currentSection = 'instructions';
+            }
+        }
+
         // Add content to appropriate section
         if (currentSection === 'ingredients') {
             // Clean up ingredient line
@@ -315,7 +338,7 @@ function parseRecipeText(text) {
             }
         } else if (currentSection === 'header' && i > 0 && !line.match(/prep|cook|serves|yield|makes/i)) {
             // This might be a description
-            if (!recipe.description) {
+            if (!recipe.description && line.length > 10) {
                 recipe.description = line;
             }
         }
@@ -324,15 +347,15 @@ function parseRecipeText(text) {
     // Join instructions
     recipe.recipeInstructions = instructionsLines.join('\n\n');
 
-    // Validation
+    // Validation with helpful messages
     if (!recipe.name) {
-        throw new Error('Could not find recipe name');
+        throw new Error('Could not find recipe name. Make sure the recipe title is on the first line.');
     }
     if (recipe.recipeIngredient.length === 0) {
-        throw new Error('Could not find ingredients');
+        throw new Error('Could not find ingredients. Try adding an "Ingredients:" line, or start each ingredient with a number, dash (-), or bullet (•).');
     }
     if (!recipe.recipeInstructions) {
-        throw new Error('Could not find instructions');
+        throw new Error('Could not find instructions. Try adding an "Instructions:" line before the cooking steps.');
     }
 
     return recipe;
