@@ -31,11 +31,11 @@ function initializeSearch(recipes) {
             {
                 name: 'source',
                 weight: 0.8
-            }
             },
             {
                 name: 'recipeTags',
                 weight: 1.8 // Tags are highly relevant for filtering
+            }
         ],
         ignoreLocation: true, // Search entire string, not just beginning
         minMatchCharLength: 2

@@ -251,7 +251,7 @@ function parseRecipeText(text) {
         totalTime: null,
         recipeYield: '',
         source: '',
-        sourceUrl: ''
+        sourceUrl: '',
         recipeTags: []
     };
 
@@ -311,9 +311,9 @@ function parseRecipeText(text) {
             continue;
         } else if (lowerLine.match(/^(?:source|from|recipe\s+from):?$/)) {
             currentSection = 'source';
+            continue;
         } else if (lowerLine.match(/^(?:tags?|categories?):?$/)) {
             currentSection = 'tags';
-            continue;
             continue;
         }
 
@@ -339,13 +339,13 @@ function parseRecipeText(text) {
         } else if (currentSection === 'source') {
             recipe.source = line;
             // Check if it's a URL
-        } else if (currentSection === 'tags') {
-            // Parse tags - can be comma-separated or on separate lines
-            const tagsList = line.replace(/^[-•*]s*/, '').split(',').map(t => t.trim().toLowerCase()).filter(t => t);
-            recipe.recipeTags.push(...tagsList);
             if (line.match(/^https?:\/\//)) {
                 recipe.sourceUrl = line;
             }
+        } else if (currentSection === 'tags') {
+            // Parse tags - can be comma-separated or on separate lines
+            const tagsList = line.replace(/^[-•*]\s*/, '').split(',').map(t => t.trim().toLowerCase()).filter(t => t);
+            recipe.recipeTags.push(...tagsList);
         } else if (currentSection === 'header' && i > 0 && !line.match(/prep|cook|serves|yield|makes/i)) {
             // This might be a description
             if (!recipe.description && line.length > 10) {
