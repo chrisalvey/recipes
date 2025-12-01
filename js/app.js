@@ -157,6 +157,7 @@ async function saveRecipe() {
     try {
         // Get form values
         const name = document.getElementById('recipe-name').value.trim();
+        const emoji = document.getElementById('recipe-emoji').value.trim();
         const description = document.getElementById('recipe-description').value.trim();
         const prepTime = document.getElementById('recipe-preptime').value;
         const cookTime = document.getElementById('recipe-cooktime').value;
@@ -185,6 +186,15 @@ async function saveRecipe() {
         if (source) recipeData.source = source;
         if (sourceUrl) recipeData.sourceUrl = sourceUrl;
         if (currentRecipeTags.length > 0) recipeData.recipeTags = currentRecipeTags;
+
+        // Set emoji - use manual if provided, otherwise auto-generate from tags
+        if (emoji) {
+            recipeData.emoji = emoji;
+        } else if (currentRecipeTags.length > 0) {
+            recipeData.emoji = getEmojiForTags(currentRecipeTags);
+        } else {
+            recipeData.emoji = '🍽️';
+        }
 
         // Calculate total time if both prep and cook are provided
         if (prepTime && cookTime) {
@@ -323,6 +333,68 @@ function setupBackButton() {
             setActiveNav('nav-browse');
         });
     }
+}
+
+// ============ Emoji Mapping ============
+
+// Map tags to emojis
+function getEmojiForTags(tags) {
+    if (!tags || tags.length === 0) return '🍽️';
+
+    const emojiMap = {
+        // Bread & Baked Goods
+        'bread': '🍞', 'baking': '🍞', 'rolls': '🥐', 'croissant': '🥐',
+        // Pizza & Italian
+        'pizza': '🍕', 'italian': '🇮🇹', 'pasta': '🍝', 'spaghetti': '🍝',
+        // Soups & Stews
+        'soup': '🍲', 'stew': '🍲', 'chili': '🌶️', 'curry': '🍛',
+        // Meat & Protein
+        'meat': '🥩', 'steak': '🥩', 'beef': '🥩',
+        'chicken': '🍗', 'poultry': '🍗',
+        'fish': '🐟', 'seafood': '🦐', 'shrimp': '🦐', 'salmon': '🐟',
+        'pork': '🥓', 'bacon': '🥓',
+        // Vegetables & Salads
+        'salad': '🥗', 'vegetable': '🥗', 'veggies': '🥗',
+        'vegetarian': '🥬', 'vegan': '🌱',
+        // Sandwiches & Burgers
+        'sandwich': '🥪', 'burger': '🍔', 'hamburger': '🍔',
+        'hotdog': '🌭', 'taco': '🌮', 'burrito': '🌯',
+        // Asian Cuisine
+        'chinese': '🥡', 'asian': '🥡',
+        'japanese': '🍱', 'sushi': '🍣', 'ramen': '🍜',
+        'thai': '🍜', 'vietnamese': '🍜',
+        // Mexican
+        'mexican': '🌮',
+        // Desserts
+        'dessert': '🍰', 'cake': '🎂', 'cupcake': '🧁',
+        'cookies': '🍪', 'cookie': '🍪',
+        'pie': '🥧', 'ice cream': '🍨', 'icecream': '🍨',
+        'chocolate': '🍫', 'candy': '🍬',
+        // Breakfast
+        'breakfast': '🍳', 'eggs': '🍳', 'pancakes': '🥞', 'waffle': '🧇',
+        // Drinks
+        'drink': '🥤', 'beverage': '🥤', 'smoothie': '🥤',
+        'coffee': '☕', 'tea': '🍵',
+        // Meals
+        'dinner': '🍽️', 'lunch': '🍽️', 'appetizer': '🍴',
+        // Other
+        'rice': '🍚', 'noodles': '🍜',
+        'potato': '🥔', 'fries': '🍟',
+        'cheese': '🧀',
+        'fruit': '🍎', 'apple': '🍎', 'banana': '🍌',
+        'bbq': '🍖', 'barbecue': '🍖', 'grill': '🍖'
+    };
+
+    // Find first matching tag
+    for (const tag of tags) {
+        const normalizedTag = tag.toLowerCase().trim();
+        if (emojiMap[normalizedTag]) {
+            return emojiMap[normalizedTag];
+        }
+    }
+
+    // Default fallback
+    return '🍽️';
 }
 
 // ============ Tag Management ============

@@ -62,19 +62,17 @@ function createRecipeCard(recipe) {
     const totalTime = prepTime && cookTime ? prepTime + cookTime : null;
 
     const timeInfo = [];
-    if (prepTime) timeInfo.push(`Prep: ${prepTime}m`);
-    if (cookTime) timeInfo.push(`Cook: ${cookTime}m`);
-    if (totalTime) timeInfo.push(`Total: ${totalTime}m`);
+    if (prepTime) timeInfo.push(`${prepTime}m`);
+    if (cookTime) timeInfo.push(`${cookTime}m`);
+    if (recipe.recipeYield) timeInfo.push(escapeHtml(recipe.recipeYield));
+
+    const emoji = recipe.emoji || '🍽️';
 
     return `
         <div class="recipe-card" data-recipe-id="${recipe.id}">
-            <h3>${escapeHtml(recipe.name)}</h3>
-            ${recipe.description ? `<p class="recipe-description">${escapeHtml(recipe.description)}</p>` : ''}
-            <div class="recipe-meta">
-                ${timeInfo.length > 0 ? `<span>${timeInfo.join(' | ')}</span>` : ''}
-                ${recipe.recipeYield ? `<span>${escapeHtml(recipe.recipeYield)}</span>` : ''}
+            <h3><span class="recipe-emoji">${emoji}</span> ${escapeHtml(recipe.name)}</h3>
+            ${timeInfo.length > 0 ? `<div class="recipe-meta">${timeInfo.join(' • ')}</div>` : ''}
             ${renderTagsHTML(recipe.recipeTags)}
-            </div>
         </div>
     `;
 }
@@ -119,9 +117,10 @@ function createRecipeDetailHTML(recipe) {
     const prepTime = durationToMinutes(recipe.prepTime);
     const cookTime = durationToMinutes(recipe.cookTime);
     const totalTime = prepTime && cookTime ? prepTime + cookTime : null;
+    const emoji = recipe.emoji || '🍽️';
 
     return `
-        <h2>${escapeHtml(recipe.name)}</h2>
+        <h2><span class="recipe-emoji">${emoji}</span> ${escapeHtml(recipe.name)}</h2>
         ${recipe.description ? `<p>${escapeHtml(recipe.description)}</p>` : ''}
 
         <div class="detail-actions">
@@ -170,6 +169,7 @@ async function editRecipe(recipeId) {
 
         // Populate form
         document.getElementById('recipe-name').value = recipe.name || '';
+        document.getElementById('recipe-emoji').value = recipe.emoji || '';
         document.getElementById('recipe-description').value = recipe.description || '';
         document.getElementById('recipe-preptime').value = durationToMinutes(recipe.prepTime) || '';
         document.getElementById('recipe-cooktime').value = durationToMinutes(recipe.cookTime) || '';
@@ -179,7 +179,7 @@ async function editRecipe(recipeId) {
         document.getElementById('recipe-source').value = recipe.source || '';
         document.getElementById('recipe-sourceurl').value = recipe.sourceUrl || '';
         document.getElementById('recipe-image').value = recipe.image || '';
-        
+
         // Load tags
         loadTags(recipe.recipeTags);
 
