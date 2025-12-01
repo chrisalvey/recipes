@@ -104,18 +104,15 @@ function applyFilters() {
 
 // Load recipes from Firestore
 async function loadRecipes() {
-    console.log('[DEBUG] loadRecipes called');
     if (!isAuthenticated()) {
-        console.log('[DEBUG] User not authenticated, skipping recipe load');
         const recipesList = document.getElementById('recipes-list');
         if (recipesList) {
-            recipesList.innerHTML = '<div style="padding: 2rem; text-align: center; color: #666;">Please sign in to view recipes</div>';
+            recipesList.innerHTML = '<div style="padding: 2rem; text-align: center; color: #666;">Please sign in with Google to view your recipes</div>';
         }
         return;
     }
 
     try {
-        console.log('[DEBUG] Showing loading state');
         showLoading('Loading recipes');
 
         // Set up real-time listener
@@ -123,17 +120,14 @@ async function loadRecipes() {
             recipesListener(); // Unsubscribe previous listener
         }
 
-        console.log('[DEBUG] Setting up recipe listener');
         recipesListener = listenToRecipes((recipes) => {
-            console.log('[DEBUG] Recipe listener callback fired with', recipes.length, 'recipes');
             currentRecipes = recipes;
             updateSearchIndex(recipes);
             applyFilters();
-            console.log('[DEBUG] Recipes rendered');
         });
 
     } catch (error) {
-        console.error('[DEBUG] Error loading recipes:', error);
+        console.error('Error loading recipes:', error);
         const recipesList = document.getElementById('recipes-list');
         if (recipesList) {
             recipesList.innerHTML = '<div style="padding: 2rem; text-align: center; color: red;">Error loading recipes: ' + error.message + '</div>';

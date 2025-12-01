@@ -1,9 +1,7 @@
 // Check if Firebase SDK loaded
 if (typeof firebase === 'undefined') {
-    console.error('[DEBUG] Firebase SDK not loaded! Check if CDN is accessible.');
+    console.error('Firebase SDK not loaded! Check if CDN is accessible.');
     alert('Firebase SDK failed to load. Check your internet connection and try again.');
-} else {
-    console.log('[DEBUG] Firebase SDK loaded successfully');
 }
 
 // Firebase Configuration
@@ -18,40 +16,28 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-console.log('[DEBUG] Initializing Firebase...');
-try {
-    firebase.initializeApp(firebaseConfig);
-    console.log('[DEBUG] Firebase initialized successfully');
-} catch (error) {
-    console.error('[DEBUG] Failed to initialize Firebase:', error);
-}
+firebase.initializeApp(firebaseConfig);
 
 // Initialize Firebase services
 const auth = firebase.auth();
 const db = firebase.firestore();
-console.log('[DEBUG] Firebase services initialized');
 
 // Current user state
 let currentUser = null;
 
 // Authentication state observer
-console.log('[DEBUG] Setting up auth state observer...');
 auth.onAuthStateChanged((user) => {
-    console.log('[DEBUG] Auth state changed. User:', user ? (user.email || 'Anonymous') : 'null');
     currentUser = user;
     updateAuthUI(user);
 
     if (user) {
-        console.log('[DEBUG] User signed in:', user.email || 'Anonymous');
-        console.log('[DEBUG] User ID:', user.uid);
+        console.log('User signed in:', user.email);
         // Trigger app initialization or reload data
         if (window.onAuthStateChanged) {
             window.onAuthStateChanged(user);
         }
     } else {
-        console.log('[DEBUG] User signed out, attempting auto sign-in...');
-        // DEV MODE: Auto sign-in anonymously (remove this when enabling manual sign-in)
-        signInAnonymously();
+        console.log('No user signed in');
     }
 });
 
@@ -83,36 +69,13 @@ async function signInWithGoogle() {
     }
 }
 
-// Sign in anonymously
+// Sign in anonymously (kept for backward compatibility, not used by default)
 async function signInAnonymously() {
     try {
-        console.log('[DEBUG] Attempting anonymous sign-in...');
         await auth.signInAnonymously();
-        console.log('[DEBUG] Anonymous sign-in successful');
     } catch (error) {
-        console.error('[DEBUG] Error signing in anonymously:', error);
-        console.error('[DEBUG] Error code:', error.code);
-        console.error('[DEBUG] Error message:', error.message);
-
-        // Show user-friendly error message
-        const recipesList = document.getElementById('recipes-list');
-        if (recipesList) {
-            recipesList.innerHTML = `
-                <div style="padding: 2rem; text-align: center; color: red;">
-                    <h3>Unable to connect to Firebase</h3>
-                    <p>${error.message}</p>
-                    <p style="font-size: 0.9rem; color: #666; margin-top: 1rem;">
-                        Error code: ${error.code}<br>
-                        Try refreshing the page or check your internet connection.
-                    </p>
-                    <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #e74c3c; color: white; border: none; border-radius: 4px; cursor: pointer;">
-                        Reload Page
-                    </button>
-                </div>
-            `;
-        }
-
-        alert('Failed to connect to Firebase: ' + error.message + '\n\nTry refreshing the page.');
+        console.error('Error signing in anonymously:', error);
+        alert('Failed to sign in: ' + error.message);
     }
 }
 
@@ -142,14 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const signOutBtn = document.getElementById('sign-out-btn');
 
     if (signInBtn) {
-        signInBtn.addEventListener('click', () => {
-            // Show options for Google or Anonymous sign-in
-            if (confirm('Sign in with Google? (Cancel for Anonymous sign-in)')) {
-                signInWithGoogle();
-            } else {
-                signInAnonymously();
-            }
-        });
+        signInBtn.addEventListener('click', signInWithGoogle);
     }
 
     if (signOutBtn) {
