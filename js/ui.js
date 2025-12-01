@@ -89,10 +89,14 @@ async function showRecipeDetail(recipeId) {
         detailContainer.innerHTML = createRecipeDetailHTML(recipe);
 
         // Add event listeners to action buttons
+        const cookModeBtn = document.getElementById('cook-mode-btn');
         const editBtn = document.getElementById('edit-recipe-btn');
         const deleteBtn = document.getElementById('delete-recipe-btn');
         const exportBtn = document.getElementById('export-recipe-btn');
 
+        if (cookModeBtn) {
+            cookModeBtn.addEventListener('click', () => toggleCookMode(cookModeBtn));
+        }
         if (editBtn) {
             editBtn.addEventListener('click', () => editRecipe(recipeId));
         }
@@ -121,6 +125,7 @@ function createRecipeDetailHTML(recipe) {
         ${recipe.description ? `<p>${escapeHtml(recipe.description)}</p>` : ''}
 
         <div class="detail-actions">
+            <button id="cook-mode-btn" class="btn-cook-mode">🍳 Cook Mode</button>
             <button id="edit-recipe-btn" class="btn-secondary">Edit</button>
             <button id="export-recipe-btn" class="btn-secondary">Export</button>
             <button id="delete-recipe-btn" class="btn-danger">Delete</button>
@@ -269,3 +274,70 @@ function renderTagsHTML(tags) {
     if (!tags || tags.length === 0) return '';
     return '<div class="recipe-tags">' + tags.map(tag => '<span class="tag">' + escapeHtml(tag) + '</span>').join('') + '</div>';
 }
+
+// ============ Cook Mode (Wake Lock) ============
+
+let wakeLock = null;
+
+// Toggle Cook Mode
+async function toggleCookMode(button) {
+    if (wakeLock) {
+        // Disable Cook Mode
+        await releaseCookMode(button);
+    } else {
+        // Enable Cook Mode
+        await enableCookMode(button);
+    }
+}
+
+// Enable Cook Mode (request wake lock)
+async function enableCookMode(button) {
+    // Check if Wake Lock API is supported
+    if (!('wakeLock' in navigator)) {
+        alert('Cook Mode is not supported on this device/browser. Please use a modern mobile browser.');
+        return;
+    }
+
+    try {
+        wakeLock = await navigator.wakeLock.request('screen');
+        console.log('Wake Lock is active');
+
+        // Update button visual state
+        button.classList.add('active');
+        button.innerHTML = '✓ Cook Mode Active';
+
+        // Listen for wake lock release (e.g., when user switches tabs)
+        wakeLock.addEventListener('release', () => {
+            console.log('Wake Lock was released');
+            wakeLock = null;
+            button.classList.remove('active');
+            button.innerHTML = '🍳 Cook Mode';
+        });
+
+    } catch (err) {
+        console.error('Failed to activate Cook Mode:', err);
+        alert(`Failed to activate Cook Mode: ${err.message}`);
+    }
+}
+
+// Release Cook Mode (release wake lock)
+async function releaseCookMode(button) {
+    if (wakeLock) {
+        try {
+            await wakeLock.release();
+            wakeLock = null;
+            button.classList.remove('active');
+            button.innerHTML = '🍳 Cook Mode';
+            console.log('Cook Mode disabled');
+        } catch (err) {
+            console.error('Failed to release wake lock:', err);
+        }
+    }
+}
+
+// Release wake lock when navigating away from detail view
+window.addEventListener('beforeunload', () => {
+    if (wakeLock) {
+        wakeLock.release();
+    }
+});

@@ -147,6 +147,30 @@ button {
     background-color: #b71c1c;
 }
 
+.btn-cook-mode {
+    background-color: #ff6f00;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.btn-cook-mode:hover {
+    background-color: #e65100;
+}
+
+.btn-cook-mode.active {
+    background-color: var(--success-color);
+    box-shadow: 0 0 0 3px rgba(56, 142, 60, 0.2);
+}
+
+.btn-cook-mode.active:hover {
+    background-color: #2e7d32;
+}
+
 /* Search Bar */
 .search-bar {
     display: flex;
