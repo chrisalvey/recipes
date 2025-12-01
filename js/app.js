@@ -328,7 +328,6 @@ function setupBackButton() {
 // ============ Tag Management ============
 
 let currentRecipeTags = [];
-let currentRecipeId = null;
 
 // Initialize tag input handling
 function setupTagInput() {

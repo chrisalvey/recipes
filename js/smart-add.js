@@ -182,8 +182,7 @@ async function parseRecipeFromImage(additionalText) {
         prompt += '  "prepTime": "PT15M" (ISO 8601 format, optional),\n';
         prompt += '  "cookTime": "PT30M" (ISO 8601 format, optional),\n';
         prompt += '  "recipeYield": "4 servings" (optional),\n';
-        prompt += '  "recipeTags": ["tag1", "tag2", ...] (optional, categorize recipe like bread, italian, etc.),
-';
+        prompt += '  "recipeTags": ["tag1", "tag2", ...] (optional, categorize recipe like bread, italian, etc.),\n';
         prompt += '  "source": "source name" (optional)\n';
         prompt += '}\n\n';
         prompt += 'Return ONLY the JSON object, no markdown formatting or explanation.';
